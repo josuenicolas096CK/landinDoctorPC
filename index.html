@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor PC | Soluciones técnicas rápidas y con garantía en Huehuetenango</title>
+  
+  <!-- Metadatos SEO y Redes Sociales -->
+  <meta name="description" content="¿Tu equipo no funciona como debería? En Doctor PC le damos solución. Reparación de computadoras, impresoras, redes, cámaras y repuestos en Huehuetenango.">
+  <meta name="theme-color" content="#0d2238">
+  <link rel="icon" type="image/jpeg" href="img/LogoDoctorPC.jpeg">
+
+  <!-- Fuentes Google: Poppins (Titulares) e Inter (Cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Iconos Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <!-- Estilos Optimizados -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. ENCABEZADO Y NAVEGACIÓN
+       ========================================================================= -->
+  <header class="site-header d-flex align-center" id="siteHeader">
+    <div class="container flex-between">
+      <!-- Logo en texto con isotipo oficial -->
+      <a href="#inicio" class="brand-logo d-flex align-center" aria-label="Inicio Doctor PC">
+        <img src="img/LogoDoctorPC.jpeg" alt="Logo Doctor PC" width="44" height="44">
+        <div class="d-flex flex-column">
+          <span class="brand-name">Doctor <span>PC</span></span>
+          <span class="brand-tagline">Soporte Especializado</span>
+        </div>
+      </a>
+
+      <!-- Menú Principal -->
+      <nav aria-label="Navegación principal">
+        <ul class="nav-menu d-flex align-center" id="navMenu">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#por-que-elegirnos" class="nav-link">Por qué elegirnos</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+          <li class="mobile-cta w-100">
+            <a href="https://wa.me/50231393354" class="btn btn-whatsapp w-100" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Acciones de Encabezado -->
+      <div class="header-actions d-flex align-center gap-md">
+        <a href="https://wa.me/50231393354" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Preguntar por WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i> Preguntar
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overlay para menú móvil -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <main>
+    <!-- =========================================================================
+         2. SECCIÓN PRINCIPAL (HERO)
+         ========================================================================= -->
+    <section class="section hero-section" id="inicio">
+      <div class="container grid hero-grid">
+        
+        <!-- Texto Principal y Llamadas a la Acción -->
+        <div class="hero-content d-flex flex-column">
+          <span class="badge badge-blue">
+            <span class="status-dot"></span> Atención en Huehuetenango
+          </span>
+
+          <h1 class="hero-title">
+            Soluciones técnicas <span class="highlight">rápidas</span> y con garantía
+          </h1>
+
+          <p class="hero-subtitle">
+            ¿Tu equipo no funciona como debería? En <strong>Doctor PC</strong> le damos solución. Reparamos computadoras, impresoras, redes y sistemas de seguridad con diagnóstico preciso.
+          </p>
+
+          <div class="hero-actions d-flex flex-wrap gap-md">
+            <a href="https://wa.me/50231393354" class="btn btn-whatsapp" id="heroCtaWhatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp"></i> ¡Pregunta por tu solución!
+            </a>
+            <a href="#servicios" class="btn btn-outline">
+              <i class="fa-solid fa-list-check"></i> Ver Servicios
+            </a>
+          </div>
+
+          <div class="hero-guarantee d-flex flex-wrap w-100">
+            <div class="guarantee-item d-flex align-center"><i class="fa-solid fa-circle-check"></i> Diagnóstico Confiable</div>
+            <div class="guarantee-item d-flex align-center"><i class="fa-solid fa-circle-check"></i> Garantía por Escrito</div>
+            <div class="guarantee-item d-flex align-center"><i class="fa-solid fa-circle-check"></i> Atención Rápida</div>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Diagnóstico Limpia e Integrada (Sin Sobreposiciones) -->
+        <article class="card hero-card w-100">
+          <div class="hero-card-header d-flex align-center">
+            <img src="img/LogoDoctorPC.jpeg" alt="Sello Doctor PC" width="60" height="60">
+            <div>
+              <h3>Doctor PC</h3>
+              <small style="color: var(--accent-blue); font-weight: 600;"><i class="fa-solid fa-screwdriver-wrench"></i> Centro de Servicio Técnico</small>
+            </div>
+          </div>
+
+          <div class="hero-status-pill flex-between">
+            <span class="d-flex align-center gap-sm"><i class="fa-regular fa-clock" style="color: var(--accent-blue);"></i> Hoy: 10:00 am a 8:00 pm</span>
+            <span class="badge badge-green" style="padding: 2px 10px; font-size: 0.75rem;">Abierto</span>
+          </div>
+
+          <ul class="d-flex flex-column gap-xs">
+            <li class="hero-feature-row d-flex align-center gap-md">
+              <div class="icon-box icon-box-blue" style="width: 36px; height: 36px; font-size: 1rem;"><i class="fa-solid fa-laptop"></i></div>
+              <div><strong>Computadoras y Laptops</strong><span>Reparación y optimización</span></div>
+            </li>
+            <li class="hero-feature-row d-flex align-center gap-md">
+              <div class="icon-box icon-box-green" style="width: 36px; height: 36px; font-size: 1rem;"><i class="fa-solid fa-shield-halved"></i></div>
+              <div><strong>Garantía en Cada Trabajo</strong><span>Respaldo real y profesional</span></div>
+            </li>
+            <li class="hero-feature-row d-flex align-center gap-md">
+              <div class="icon-box icon-box-alt" style="width: 36px; height: 36px; font-size: 1rem; color: #b45309; background: #fef3c7;"><i class="fa-solid fa-bolt"></i></div>
+              <div><strong>Soluciones Rápidas</strong><span>Tiempos de entrega ágiles</span></div>
+            </li>
+          </ul>
+
+          <a href="https://wa.me/50231393354" class="btn btn-whatsapp w-100" style="margin-top: var(--space-md);" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> Diagnosticar mi equipo ahora
+          </a>
+
+          <!-- Sello de Confianza Integrado sin Colisiones -->
+          <div class="hero-card-trust-seal d-flex align-center">
+            <i class="fa-solid fa-certificate"></i>
+            <div class="d-flex flex-column">
+              <span>Compromiso Total</span>
+              <strong>Calidad Profesional a Buen Precio</strong>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         BARRA DE CONFIANZA / STATS
+         ========================================================================= -->
+    <section class="trust-bar" aria-label="Ventajas clave">
+      <div class="container grid trust-grid">
+        <div class="trust-item d-flex align-center">
+          <div class="icon-box icon-box-alt"><i class="fa-solid fa-bolt-lightning"></i></div>
+          <div><h4>Atención Inmediata</h4><p>Respuesta rápida y soporte ágil</p></div>
+        </div>
+        <div class="trust-item d-flex align-center">
+          <div class="icon-box icon-box-alt"><i class="fa-solid fa-award"></i></div>
+          <div><h4>Garantía Real</h4><p>Respaldamos cada reparación</p></div>
+        </div>
+        <div class="trust-item d-flex align-center">
+          <div class="icon-box icon-box-alt"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <div><h4>Precios Transparentes</h4><p>Sin costos ocultos ni sorpresas</p></div>
+        </div>
+        <div class="trust-item d-flex align-center">
+          <div class="icon-box icon-box-alt"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div><h4>Ubicación Céntrica</h4><p>C.C. El Triángulo, Huehue</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. SECCIÓN DE SERVICIOS
+         ========================================================================= -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <header class="section-header">
+          <span class="badge badge-blue"><i class="fa-solid fa-screwdriver-wrench"></i> Especialistas Certificados</span>
+          <h2 class="section-title">Nuestros Servicios</h2>
+          <p class="section-desc">Brindamos soluciones integrales de tecnología para particulares, oficinas y empresas.</p>
+        </header>
+
+        <div class="grid services-grid">
+          <!-- 1. Computadoras -->
+          <article class="card service-card">
+            <div class="icon-box icon-box-primary"><i class="fa-solid fa-laptop-code"></i></div>
+            <h3 class="service-title">Computadoras</h3>
+            <p class="service-desc">Reparación de computadoras y laptops. Mantenimiento preventivo, formateo, eliminación de virus, optimización de velocidad y solución de fallas físicas o de software.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-circle-check"></i> Laptops y computadoras de escritorio</li>
+              <li><i class="fa-solid fa-circle-check"></i> Pasta térmica y limpieza interna profunda</li>
+              <li><i class="fa-solid fa-circle-check"></i> Ampliación a Disco SSD y memoria RAM</li>
+            </ul>
+            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+              <span>Cotizar Computadora</span><i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </article>
+
+          <!-- 2. Impresoras -->
+          <article class="card service-card">
+            <div class="icon-box icon-box-primary"><i class="fa-solid fa-print"></i></div>
+            <h3 class="service-title">Impresoras</h3>
+            <p class="service-desc">Mantenimiento y reparación para impresoras de inyección de tinta, sistemas continuos y láser. Desatasco de papel, limpieza de cabezales y reseteo de almohadillas.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-circle-check"></i> Mantenimiento preventivo y correctivo</li>
+              <li><i class="fa-solid fa-circle-check"></i> Reparación de sistemas de tinta continua</li>
+              <li><i class="fa-solid fa-circle-check"></i> Diagnóstico de sensores y engranajes</li>
+            </ul>
+            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+              <span>Cotizar Impresora</span><i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </article>
+
+          <!-- 3. Redes -->
+          <article class="card service-card">
+            <div class="icon-box icon-box-primary"><i class="fa-solid fa-network-wired"></i></div>
+            <h3 class="service-title">Redes</h3>
+            <p class="service-desc">Diseño, instalación y optimización de redes cableadas e inalámbricas (Wi-Fi). Conexión estable y segura para tu hogar, comercio u oficina con máxima cobertura.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-circle-check"></i> Configuración de routers y repetidores Wi-Fi</li>
+              <li><i class="fa-solid fa-circle-check"></i> Cableado estructurado de red UTP</li>
+              <li><i class="fa-solid fa-circle-check"></i> Solución a problemas de señal e internet lento</li>
+            </ul>
+            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+              <span>Cotizar Redes</span><i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </article>
+
+          <!-- 4. Cámaras de Seguridad -->
+          <article class="card service-card">
+            <div class="icon-box icon-box-primary"><i class="fa-solid fa-video"></i></div>
+            <h3 class="service-title">Cámaras de seguridad</h3>
+            <p class="service-desc">Instalación y mantenimiento de sistemas de videovigilancia CCTV y cámaras IP. Monitorea tu casa, local o negocio en tiempo real directamente desde tu teléfono móvil.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-circle-check"></i> Instalación de cámaras HD y visión nocturna</li>
+              <li><i class="fa-solid fa-circle-check"></i> Configuración de DVRs y acceso remoto móvil</li>
+              <li><i class="fa-solid fa-circle-check"></i> Mantenimiento y reubicación de cámaras</li>
+            </ul>
+            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+              <span>Cotizar Cámaras</span><i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </article>
+
+          <!-- 5. Repuestos -->
+          <article class="card service-card">
+            <div class="icon-box icon-box-primary"><i class="fa-solid fa-microchip"></i></div>
+            <h3 class="service-title">Repuestos</h3>
+            <p class="service-desc">Venta e instalación de componentes nuevos y de alta calidad para computadoras y laptops. Encuentra la pieza exacta y compatible con asesoría profesional.</p>
+            <ul class="service-features">
+              <li><i class="fa-solid fa-circle-check"></i> Discos SSD, Memorias RAM y fuentes</li>
+              <li><i class="fa-solid fa-circle-check"></i> Pantallas, teclados, cargadores y baterías</li>
+              <li><i class="fa-solid fa-circle-check"></i> Repuestos con garantía comprobada</li>
+            </ul>
+            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+              <span>Consultar Repuestos</span><i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. SECCIÓN POR QUÉ ELEGIRNOS (PROPUESTA DE VALOR)
+         ========================================================================= -->
+    <section class="section section-alt" id="por-que-elegirnos">
+      <div class="container grid why-us-grid">
+        
+        <!-- Propuesta y Lista de Puntos Fuertes -->
+        <div>
+          <span class="badge badge-green"><i class="fa-solid fa-shield-check"></i> Nuestra Promesa</span>
+          <h2 class="section-title">Calidad profesional a buen precio</h2>
+          <p class="section-desc">En Doctor PC cuidamos tus herramientas de trabajo y estudio con honestidad, rapidez técnica y respaldo real.</p>
+
+          <ul class="value-list">
+            <li class="value-item d-flex gap-md">
+              <div class="icon-box icon-box-green" style="width: 38px; height: 38px;"><i class="fa-solid fa-check"></i></div>
+              <div>
+                <h3>Soluciones rápidas.</h3>
+                <p>Diagnósticos ágiles y tiempos de entrega optimizados para que retomes tus labores escolares o laborales sin demoras.</p>
+              </div>
+            </li>
+            <li class="value-item d-flex gap-md">
+              <div class="icon-box icon-box-green" style="width: 38px; height: 38px;"><i class="fa-solid fa-check"></i></div>
+              <div>
+                <h3>Garantía en nuestro trabajo.</h3>
+                <p>Respaldamos plenamente cada servicio realizado y cada componente instalado. Tu tranquilidad está 100% protegida.</p>
+              </div>
+            </li>
+            <li class="value-item d-flex gap-md">
+              <div class="icon-box icon-box-green" style="width: 38px; height: 38px;"><i class="fa-solid fa-check"></i></div>
+              <div>
+                <h3>Calidad profesional a buen precio.</h3>
+                <p>Tarifas justas, transparentes y competitivas. Recibes un estándar de trabajo superior sin pagar de más.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="https://wa.me/50231393354" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp"></i> ¡Comunícate con Doctor PC!
+          </a>
+        </div>
+
+        <!-- Tarjeta Visual de Respaldo -->
+        <article class="banner-card">
+          <span class="badge badge-green" style="background: rgba(37, 211, 102, 0.15); color: var(--accent-green);">
+            <i class="fa-solid fa-handshake"></i> Compromiso Doctor PC
+          </span>
+          <h3>Diagnóstico preciso y atención especializada</h3>
+          <p>Realizamos pruebas exhaustivas para detectar la raíz de la falla antes de proceder, garantizando reparaciones seguras y duraderas.</p>
+
+          <div class="seal-row d-flex align-center">
+            <div class="icon-box icon-box-green" style="width: 48px; height: 48px; font-size: 1.5rem;"><i class="fa-solid fa-shield-virus"></i></div>
+            <div><strong>Seguridad y Confidencialidad</strong><span>Tus archivos personales se tratan con absoluta reserva.</span></div>
+          </div>
+          <div class="seal-row d-flex align-center" style="margin-bottom: 0;">
+            <div class="icon-box icon-box-green" style="width: 48px; height: 48px; font-size: 1.5rem;"><i class="fa-solid fa-tags"></i></div>
+            <div><strong>Presupuesto Previo Claro</strong><span>Conoce el costo antes de autorizar cualquier reparación.</span></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. SECCIÓN DE CONTACTO
+         ========================================================================= -->
+    <section class="section" id="contacto">
+      <div class="container">
+        <header class="section-header">
+          <span class="badge badge-blue"><i class="fa-solid fa-headset"></i> Estamos a tu disposición</span>
+          <h2 class="section-title">Contáctanos y Visítanos</h2>
+          <p class="section-desc">Escríbenos por WhatsApp, llámanos o visítanos directamente en nuestro taller.</p>
+        </header>
+
+        <div class="grid contact-grid">
+          
+          <!-- Bloques de Información de Contacto -->
+          <address class="d-flex flex-column" style="font-style: normal;">
+            
+            <!-- Ubicación -->
+            <div class="card contact-card d-flex align-center">
+              <div class="icon-box" style="background: #fee2e2; color: #dc2626;"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <h3>Ubicación</h3>
+                <p>A un costado de C.C. El Triángulo, Huehuetenango</p>
+                <a href="https://www.google.com/maps/search/C.C.+El+Triangulo+Huehuetenango" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">
+                  <i class="fa-solid fa-map-location-dot"></i> Ver en Google Maps
+                </a>
+              </div>
+            </div>
+
+            <!-- Horario -->
+            <div class="card contact-card d-flex align-center">
+              <div class="icon-box" style="background: #fef3c7; color: #d97706;"><i class="fa-regular fa-clock"></i></div>
+              <div>
+                <h3>Horario de Atención</h3>
+                <p><strong>10:00 am a 8:00 pm</strong></p>
+                <small style="color: var(--text-muted);">Lunes a Sábado - Atención continua y personalizada</small>
+              </div>
+            </div>
+
+            <!-- Teléfonos de Atención Directa (Informativos, sin links) -->
+            <div class="card contact-card d-flex align-center">
+              <div class="icon-box icon-box-green"><i class="fa-solid fa-phone-volume"></i></div>
+              <div>
+                <h3>Teléfonos de Atención Directa</h3>
+                <p>Líneas de atención telefónica directa:</p>
+                <div class="contact-phones-display">
+                  <div class="phone-item d-flex align-center">
+                    <span class="phone-label d-flex align-center"><i class="fa-brands fa-whatsapp"></i> Principal</span>
+                    <span class="phone-number">5754 4902</span>
+                  </div>
+                  <div class="phone-item secondary d-flex align-center">
+                    <span class="phone-label d-flex align-center"><i class="fa-solid fa-phone"></i> Alterno</span>
+                    <span class="phone-number">3099 0399</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </address>
+
+          <!-- Asistente Interactivo de WhatsApp -->
+          <form class="card" id="whatsappQuickForm" onsubmit="return false;">
+            <div style="margin-bottom: var(--space-lg);">
+              <h3 class="d-flex align-center gap-sm"><i class="fa-brands fa-whatsapp" style="color: var(--accent-green);"></i> Consulta Rápida</h3>
+              <p style="color: var(--text-sub); font-size: 0.94rem;">Envía tu consulta técnica de inmediato a nuestro WhatsApp:</p>
+            </div>
+
+            <div class="form-group">
+              <label for="clientName">Tu Nombre:</label>
+              <input type="text" id="clientName" class="form-control" placeholder="Ej. Carlos Mendoza" required>
+            </div>
+
+            <div class="form-group">
+              <label for="deviceType">Tipo de Dispositivo o Servicio:</label>
+              <select id="deviceType" class="form-control">
+                <option value="Computadora / Laptop">Computadora / Laptop</option>
+                <option value="Impresora">Impresora</option>
+                <option value="Redes e Internet">Redes e Internet</option>
+                <option value="Cámaras de Seguridad">Cámaras de Seguridad</option>
+                <option value="Cotización de Repuestos">Cotización de Repuestos</option>
+                <option value="Otro Servicio">Otro Servicio</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="clientProblem">Describe la falla o requerimiento:</label>
+              <textarea id="clientProblem" class="form-control" rows="3" placeholder="Ej. Mi laptop enciende pero se apaga a los pocos minutos..."></textarea>
+            </div>
+
+            <button type="button" class="btn btn-whatsapp w-100" id="btnSendCustomWhatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Enviar Consulta por WhatsApp
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       PIE DE PÁGINA (FOOTER)
+       ========================================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="grid footer-grid">
+        <!-- Info Marca -->
+        <div>
+          <div class="brand-name" style="color: var(--text-white);">Doctor <span style="color: var(--accent-green);">PC</span></div>
+          <p style="color: #94a3b8; font-size: 0.94rem; margin: 12px 0 18px 0; max-width: 360px;">
+            Soluciones técnicas rápidas y con garantía. Expertos en reparación y mantenimiento informático en Huehuetenango.
+          </p>
+          <div class="d-flex align-center gap-sm" style="color: var(--accent-green); font-size: 0.88rem; margin-bottom: 6px;">
+            <i class="fa-regular fa-clock"></i> <span>10:00 am a 8:00 pm</span>
+          </div>
+          <div class="d-flex align-center gap-sm" style="color: #94a3b8; font-size: 0.88rem;">
+            <i class="fa-solid fa-location-dot"></i> <span>C.C. El Triángulo, Huehuetenango</span>
+          </div>
+        </div>
+
+        <!-- Enlaces Rápidos -->
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Inicio</a></li>
+            <li><a href="#servicios"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Nuestros Servicios</a></li>
+            <li><a href="#por-que-elegirnos"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Por qué elegirnos</a></li>
+            <li><a href="#contacto"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Horario y Ubicación</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div class="footer-col">
+          <h4>Síguenos en Redes</h4>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill instagram d-flex align-center">
+            <div class="icon-box"><i class="fa-brands fa-instagram"></i></div>
+            <div class="d-flex flex-column"><span>Instagram</span><strong>@DoctorPC_</strong></div>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-pill facebook d-flex align-center">
+            <div class="icon-box"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="d-flex flex-column"><span>Facebook</span><strong>@DoctorPC_</strong></div>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom flex-between">
+        <p>&copy; <span id="currentYear"></span> <strong>Doctor PC</strong>. Todos los derechos reservados.</p>
+        <p>Huehuetenango, Guatemala.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       BOTÓN FLOTANTE DE WHATSAPP Y VOLVER ARRIBA
+       ========================================================================= -->
+  <aside class="whatsapp-floating d-flex align-center" aria-label="Contacto flotante">
+    <span class="whatsapp-tooltip">¡Estamos en línea! Escríbenos</span>
+    <a href="https://wa.me/50231393354" class="whatsapp-btn-circle flex-center" id="floatingWhatsappBtn" target="_blank" rel="noopener noreferrer" aria-label="Chat de WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+  </aside>
+
+  <button class="scroll-top-btn flex-center" id="scrollTopBtn" aria-label="Volver arriba">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Lógica JavaScript Optimizada -->
+  <script src="js/script.js"></script>
+</body>
+</html>

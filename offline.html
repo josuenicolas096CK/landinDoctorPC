@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0d2238">
+  <title>Sin conexión | Doctor PC</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0f172a; background: radial-gradient(circle at top, #e0f2fe, transparent 45%), #f8fafc; }
+    main { width: min(100%, 520px); padding: 36px; border: 1px solid #e2e8f0; border-radius: 22px; background: #fff; box-shadow: 0 20px 45px rgba(13,34,56,.13); text-align: center; }
+    img { width: 96px; height: 96px; border-radius: 22px; object-fit: cover; }
+    h1 { margin: 22px 0 10px; color: #0d2238; font-size: clamp(1.7rem, 6vw, 2.3rem); }
+    p { margin: 0 auto 24px; color: #475569; line-height: 1.65; }
+    .actions { display: grid; gap: 10px; }
+    a, button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 12px 20px; border: 0; border-radius: 999px; font: inherit; font-weight: 700; text-decoration: none; cursor: pointer; }
+    button { color: #fff; background: #0d2238; }
+    a { color: #0e7033; background: #e8f9ee; }
+    small { display: block; margin-top: 20px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="img/icons/icon-192.png" alt="Doctor PC">
+    <h1>Estás sin conexión</h1>
+    <p>La aplicación sigue disponible, pero WhatsApp y las consultas en línea necesitan conexión a Internet.</p>
+    <div class="actions">
+      <button type="button" onclick="location.reload()">Intentar de nuevo</button>
+      <a href="tel:+50257544902">Llamar al 5754 4902</a>
+      <a href="tel:+50230990399">Llamar al 3099 0399</a>
+    </div>
+    <small>A un costado de C.C. El Triángulo, Huehuetenango</small>
+  </main>
+</body>
+</html>

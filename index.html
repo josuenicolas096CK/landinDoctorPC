@@ -8,7 +8,30 @@
   <!-- Metadatos SEO y Redes Sociales -->
   <meta name="description" content="¿Tu equipo no funciona como debería? En Doctor PC le damos solución. Reparación de computadoras, impresoras, redes, cámaras y repuestos en Huehuetenango.">
   <meta name="theme-color" content="#0d2238">
-  <link rel="icon" type="image/jpeg" href="img/LogoDoctorPC.jpeg">
+  <meta name="application-name" content="Doctor PC">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Doctor PC">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/icons/apple-touch-icon.png">
+
+  <!-- Aplica el tema antes de pintar la página para evitar destellos al cargar. -->
+  <script>
+    (() => {
+      const validThemes = ['light', 'dark', 'system'];
+      let preference = 'system';
+      try {
+        const savedTheme = localStorage.getItem('doctorpc-theme');
+        if (validThemes.includes(savedTheme)) preference = savedTheme;
+      } catch (_) {}
+      const isDark = preference === 'dark' ||
+        (preference === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+      document.documentElement.dataset.themePreference = preference;
+    })();
+  </script>
 
   <!-- Fuentes Google: Poppins (Titulares) e Inter (Cuerpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +45,7 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
   <!-- =========================================================================
        1. ENCABEZADO Y NAVEGACIÓN
@@ -42,10 +66,11 @@
         <ul class="nav-menu d-flex align-center" id="navMenu">
           <li><a href="#inicio" class="nav-link active">Inicio</a></li>
           <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
           <li><a href="#por-que-elegirnos" class="nav-link">Por qué elegirnos</a></li>
           <li><a href="#contacto" class="nav-link">Contacto</a></li>
           <li class="mobile-cta w-100">
-            <a href="https://wa.me/50231393354" class="btn btn-whatsapp w-100" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="btn btn-whatsapp w-100" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
             </a>
           </li>
@@ -54,7 +79,32 @@
 
       <!-- Acciones de Encabezado -->
       <div class="header-actions d-flex align-center gap-md">
-        <a href="https://wa.me/50231393354" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Preguntar por WhatsApp">
+        <!-- Selector desplegable de tema -->
+        <div class="theme-switcher" id="themeSwitcher">
+          <button class="theme-trigger" id="themeMenuButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="themeMenu" aria-label="Tema: Sistema">
+            <i class="fa-solid fa-circle-half-stroke theme-current-icon" aria-hidden="true"></i>
+            <span class="theme-current-label">Sistema</span>
+            <i class="fa-solid fa-chevron-down theme-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="theme-menu" id="themeMenu" role="menu" aria-labelledby="themeMenuButton" hidden>
+            <button class="theme-option" type="button" role="menuitemradio" aria-checked="true" data-theme="system">
+              <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+              <span><strong>Sistema</strong><small>Usar la configuración del dispositivo</small></span>
+              <i class="fa-solid fa-check option-check" aria-hidden="true"></i>
+            </button>
+            <button class="theme-option" type="button" role="menuitemradio" aria-checked="false" data-theme="light">
+              <i class="fa-solid fa-sun" aria-hidden="true"></i>
+              <span><strong>Claro</strong><small>Fondo claro siempre</small></span>
+              <i class="fa-solid fa-check option-check" aria-hidden="true"></i>
+            </button>
+            <button class="theme-option" type="button" role="menuitemradio" aria-checked="false" data-theme="dark">
+              <i class="fa-solid fa-moon" aria-hidden="true"></i>
+              <span><strong>Oscuro</strong><small>Fondo oscuro siempre</small></span>
+              <i class="fa-solid fa-check option-check" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <a href="https://wa.me/50257544902" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener noreferrer" aria-label="Preguntar por WhatsApp">
           <i class="fa-brands fa-whatsapp"></i> Preguntar
         </a>
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
@@ -65,9 +115,9 @@
   </header>
 
   <!-- Overlay para menú móvil -->
-  <div class="nav-overlay" id="navOverlay"></div>
+  <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
-  <main>
+  <main id="contenido-principal">
     <!-- =========================================================================
          2. SECCIÓN PRINCIPAL (HERO)
          ========================================================================= -->
@@ -89,11 +139,14 @@
           </p>
 
           <div class="hero-actions d-flex flex-wrap gap-md">
-            <a href="https://wa.me/50231393354" class="btn btn-whatsapp" id="heroCtaWhatsapp" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="btn btn-whatsapp" id="heroCtaWhatsapp" target="_blank" rel="noopener noreferrer">
               <i class="fa-brands fa-whatsapp"></i> ¡Pregunta por tu solución!
             </a>
             <a href="#servicios" class="btn btn-outline">
               <i class="fa-solid fa-list-check"></i> Ver Servicios
+            </a>
+            <a href="#herramientas" class="btn btn-ghost">
+              <i class="fa-solid fa-stethoscope"></i> Diagnóstico guiado
             </a>
           </div>
 
@@ -115,8 +168,8 @@
           </div>
 
           <div class="hero-status-pill flex-between">
-            <span class="d-flex align-center gap-sm"><i class="fa-regular fa-clock" style="color: var(--accent-blue);"></i> Hoy: 10:00 am a 8:00 pm</span>
-            <span class="badge badge-green" style="padding: 2px 10px; font-size: 0.75rem;">Abierto</span>
+            <span class="d-flex align-center gap-sm"><i class="fa-regular fa-clock" style="color: var(--accent-blue);"></i> <span id="businessHoursText">Hoy: 10:00 a. m. a 8:00 p. m.</span></span>
+            <span class="badge business-status" id="businessStatus" aria-live="polite">Consultando…</span>
           </div>
 
           <ul class="d-flex flex-column gap-xs">
@@ -134,7 +187,7 @@
             </li>
           </ul>
 
-          <a href="https://wa.me/50231393354" class="btn btn-whatsapp w-100" style="margin-top: var(--space-md);" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/50257544902" class="btn btn-whatsapp w-100" style="margin-top: var(--space-md);" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-whatsapp"></i> Diagnosticar mi equipo ahora
           </a>
 
@@ -170,8 +223,24 @@
         </div>
         <div class="trust-item d-flex align-center">
           <div class="icon-box icon-box-alt"><i class="fa-solid fa-map-location-dot"></i></div>
-          <div><h4>Ubicación Céntrica</h4><p>C.C. El Triángulo, Huehue</p></div>
+          <div><h4>Ubicación céntrica</h4><p>A un costado de C.C. El Triángulo</p></div>
         </div>
+      </div>
+    </section>
+
+    <!-- INSTALACIÓN DE LA PWA -->
+    <section class="pwa-install-strip" id="pwaInstallSection" aria-labelledby="pwaInstallTitle">
+      <div class="container pwa-install-layout">
+        <img src="img/icons/icon-192.png" width="72" height="72" alt="" aria-hidden="true">
+        <div class="pwa-install-copy">
+          <span class="pwa-install-eyebrow"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i> Disponible como aplicación</span>
+          <h2 id="pwaInstallTitle">Instala Doctor PC en tu teléfono</h2>
+          <p>Accede rápidamente al diagnóstico, las citas y el seguimiento, incluso cuando la conexión sea inestable.</p>
+          <span class="pwa-install-status" id="pwaInstallStatus" role="status">Instalación disponible en teléfonos y computadoras compatibles.</span>
+        </div>
+        <button class="btn btn-primary install-app-trigger" type="button">
+          <i class="fa-solid fa-download" aria-hidden="true"></i> Instalar aplicación
+        </button>
       </div>
     </section>
 
@@ -197,7 +266,7 @@
               <li><i class="fa-solid fa-circle-check"></i> Pasta térmica y limpieza interna profunda</li>
               <li><i class="fa-solid fa-circle-check"></i> Ampliación a Disco SSD y memoria RAM</li>
             </ul>
-            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="service-btn flex-between js-service-whatsapp" data-service="Computadoras y laptops" target="_blank" rel="noopener noreferrer">
               <span>Cotizar Computadora</span><i class="fa-brands fa-whatsapp"></i>
             </a>
           </article>
@@ -212,7 +281,7 @@
               <li><i class="fa-solid fa-circle-check"></i> Reparación de sistemas de tinta continua</li>
               <li><i class="fa-solid fa-circle-check"></i> Diagnóstico de sensores y engranajes</li>
             </ul>
-            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="service-btn flex-between js-service-whatsapp" data-service="Impresoras" target="_blank" rel="noopener noreferrer">
               <span>Cotizar Impresora</span><i class="fa-brands fa-whatsapp"></i>
             </a>
           </article>
@@ -227,7 +296,7 @@
               <li><i class="fa-solid fa-circle-check"></i> Cableado estructurado de red UTP</li>
               <li><i class="fa-solid fa-circle-check"></i> Solución a problemas de señal e internet lento</li>
             </ul>
-            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="service-btn flex-between js-service-whatsapp" data-service="Redes e Internet" target="_blank" rel="noopener noreferrer">
               <span>Cotizar Redes</span><i class="fa-brands fa-whatsapp"></i>
             </a>
           </article>
@@ -242,7 +311,7 @@
               <li><i class="fa-solid fa-circle-check"></i> Configuración de DVRs y acceso remoto móvil</li>
               <li><i class="fa-solid fa-circle-check"></i> Mantenimiento y reubicación de cámaras</li>
             </ul>
-            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="service-btn flex-between js-service-whatsapp" data-service="Cámaras de seguridad" target="_blank" rel="noopener noreferrer">
               <span>Cotizar Cámaras</span><i class="fa-brands fa-whatsapp"></i>
             </a>
           </article>
@@ -257,10 +326,277 @@
               <li><i class="fa-solid fa-circle-check"></i> Pantallas, teclados, cargadores y baterías</li>
               <li><i class="fa-solid fa-circle-check"></i> Repuestos con garantía comprobada</li>
             </ul>
-            <a href="https://wa.me/50231393354" class="service-btn flex-between" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/50257544902" class="service-btn flex-between js-service-whatsapp" data-service="Repuestos y componentes" target="_blank" rel="noopener noreferrer">
               <span>Consultar Repuestos</span><i class="fa-brands fa-whatsapp"></i>
             </a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         CENTRO DE HERRAMIENTAS INTERACTIVAS
+         ========================================================================= -->
+    <section class="section section-alt tools-section" id="herramientas">
+      <div class="container">
+        <header class="section-header">
+          <span class="badge badge-blue"><i class="fa-solid fa-wand-magic-sparkles"></i> Te ayudamos a empezar</span>
+          <h2 class="section-title">Resuelve tu consulta en pocos pasos</h2>
+          <p class="section-desc">Describe la falla, prepara una cotización, reserva tu visita o consulta una reparación sin llamadas innecesarias.</p>
+        </header>
+
+        <div class="tool-tabs" role="tablist" aria-label="Herramientas de atención">
+          <button class="tool-tab is-active" id="tab-diagnostico" type="button" role="tab" aria-selected="true" aria-controls="panel-diagnostico" data-tool="diagnostico">
+            <i class="fa-solid fa-stethoscope" aria-hidden="true"></i><span>Diagnóstico</span>
+          </button>
+          <button class="tool-tab" id="tab-cotizador" type="button" role="tab" aria-selected="false" aria-controls="panel-cotizador" data-tool="cotizador" tabindex="-1">
+            <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i><span>Cotizador</span>
+          </button>
+          <button class="tool-tab" id="tab-cita" type="button" role="tab" aria-selected="false" aria-controls="panel-cita" data-tool="cita" tabindex="-1">
+            <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span>Reservar cita</span>
+          </button>
+          <button class="tool-tab" id="tab-seguimiento" type="button" role="tab" aria-selected="false" aria-controls="panel-seguimiento" data-tool="seguimiento" tabindex="-1">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Seguimiento</span>
+          </button>
+        </div>
+
+        <div class="tool-panels card">
+          <!-- Diagnóstico y test rápido -->
+          <section class="tool-panel is-active" id="panel-diagnostico" role="tabpanel" aria-labelledby="tab-diagnostico" data-panel="diagnostico">
+            <div class="tool-intro">
+              <div>
+                <span class="tool-kicker">Asistente técnico</span>
+                <h3>Diagnóstico guiado</h3>
+                <p>Responde tres pasos y enviaremos un resumen ordenado a WhatsApp. No reemplaza la revisión física del equipo.</p>
+              </div>
+              <div class="wizard-progress" aria-label="Progreso del diagnóstico">
+                <span class="wizard-progress-text" id="diagnosticProgressText">Paso 1 de 3</span>
+                <div class="progress-track"><span id="diagnosticProgressBar" style="width: 33.333%;"></span></div>
+              </div>
+            </div>
+
+            <form id="diagnosticWizard" novalidate>
+              <fieldset class="wizard-step is-active" data-step="1">
+                <legend>¿Qué necesitas revisar?</legend>
+                <div class="choice-grid">
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Computadora o laptop" required>
+                    <span><i class="fa-solid fa-laptop" aria-hidden="true"></i><strong>Computadora</strong><small>Laptop o escritorio</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Impresora" required>
+                    <span><i class="fa-solid fa-print" aria-hidden="true"></i><strong>Impresora</strong><small>Tinta o láser</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Red o conexión Wi-Fi" required>
+                    <span><i class="fa-solid fa-wifi" aria-hidden="true"></i><strong>Red o Wi-Fi</strong><small>Señal o conexión</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Sistema de cámaras" required>
+                    <span><i class="fa-solid fa-video" aria-hidden="true"></i><strong>Cámaras</strong><small>CCTV o cámaras IP</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Repuesto o componente" required>
+                    <span><i class="fa-solid fa-microchip" aria-hidden="true"></i><strong>Repuesto</strong><small>Compatibilidad o instalación</small></span>
+                  </label>
+                  <label class="choice-card">
+                    <input type="radio" name="diagnosticDevice" value="Otro equipo o servicio" required>
+                    <span><i class="fa-solid fa-ellipsis" aria-hidden="true"></i><strong>Otro</strong><small>Cuéntanos qué necesitas</small></span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset class="wizard-step" data-step="2" hidden>
+                <legend>¿Cuál describe mejor el problema?</legend>
+                <div class="choice-grid choice-grid-compact">
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="No enciende" required><span><i class="fa-solid fa-power-off" aria-hidden="true"></i><strong>No enciende</strong></span></label>
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="Funciona lento" required><span><i class="fa-solid fa-gauge-low" aria-hidden="true"></i><strong>Funciona lento</strong></span></label>
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="Se calienta o se apaga" required><span><i class="fa-solid fa-temperature-high" aria-hidden="true"></i><strong>Se calienta</strong></span></label>
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="Muestra un error" required><span><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i><strong>Muestra un error</strong></span></label>
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="Necesita instalación o configuración" required><span><i class="fa-solid fa-gears" aria-hidden="true"></i><strong>Instalación</strong></span></label>
+                  <label class="choice-card"><input type="radio" name="diagnosticSymptom" value="Otro problema" required><span><i class="fa-solid fa-comment-dots" aria-hidden="true"></i><strong>Otro problema</strong></span></label>
+                </div>
+              </fieldset>
+
+              <fieldset class="wizard-step" data-step="3" hidden>
+                <legend>Completa los detalles</legend>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="diagnosticName">Tu nombre</label>
+                    <input class="form-control" type="text" id="diagnosticName" name="diagnosticName" autocomplete="name" required placeholder="Ej. Andrea López">
+                  </div>
+                  <div class="form-group">
+                    <label for="diagnosticUrgency">¿Qué tan urgente es?</label>
+                    <select class="form-control" id="diagnosticUrgency" name="diagnosticUrgency">
+                      <option>Puede esperar algunos días</option>
+                      <option>Lo necesito pronto</option>
+                      <option>Es urgente</option>
+                    </select>
+                  </div>
+                  <div class="form-group form-group-full">
+                    <label for="diagnosticDetails">Describe qué ocurrió</label>
+                    <textarea class="form-control" id="diagnosticDetails" name="diagnosticDetails" rows="4" required placeholder="Indica desde cuándo ocurre, mensajes de error o cualquier detalle útil."></textarea>
+                  </div>
+                  <div class="form-group form-group-full">
+                    <label for="diagnosticPhoto">Fotografía opcional</label>
+                    <input class="visually-hidden" type="file" id="diagnosticPhoto" name="diagnosticPhoto" accept="image/jpeg,image/png,image/webp">
+                    <label class="file-drop" for="diagnosticPhoto">
+                      <i class="fa-regular fa-image" aria-hidden="true"></i>
+                      <span><strong id="diagnosticPhotoLabel">Seleccionar fotografía</strong><small>JPG, PNG o WebP · máximo 8 MB. WhatsApp se abrirá y podrás adjuntarla allí.</small></span>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <p class="form-feedback" id="diagnosticFeedback" role="alert" hidden></p>
+              <div class="wizard-actions">
+                <button class="btn btn-outline" id="diagnosticBack" type="button" hidden><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                <button class="btn btn-primary" id="diagnosticNext" type="button">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="btn btn-whatsapp" id="diagnosticSubmit" type="submit" hidden><i class="fa-brands fa-whatsapp"></i> Enviar diagnóstico</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Cotizador -->
+          <section class="tool-panel" id="panel-cotizador" role="tabpanel" aria-labelledby="tab-cotizador" data-panel="cotizador" hidden>
+            <div class="tool-intro">
+              <div><span class="tool-kicker">Presupuesto sin sorpresas</span><h3>Cotizador orientativo</h3><p>Selecciona lo que necesitas. No inventamos un precio sin revisar el equipo; recibirás una solicitud completa para confirmar el monto antes de autorizar.</p></div>
+              <div class="privacy-chip"><i class="fa-solid fa-shield-halved"></i> Sin compromiso</div>
+            </div>
+            <form id="quoteForm">
+              <div class="quote-layout">
+                <div>
+                  <fieldset>
+                    <legend>Servicios requeridos</legend>
+                    <div class="check-list">
+                      <label><input type="checkbox" name="quoteServices" value="Diagnóstico técnico"><span>Diagnóstico técnico</span></label>
+                      <label><input type="checkbox" name="quoteServices" value="Mantenimiento o limpieza"><span>Mantenimiento o limpieza</span></label>
+                      <label><input type="checkbox" name="quoteServices" value="Reparación"><span>Reparación</span></label>
+                      <label><input type="checkbox" name="quoteServices" value="Instalación o configuración"><span>Instalación o configuración</span></label>
+                      <label><input type="checkbox" name="quoteServices" value="Repuesto"><span>Repuesto</span></label>
+                      <label><input type="checkbox" name="quoteServices" value="Visita técnica"><span>Visita técnica</span></label>
+                    </div>
+                  </fieldset>
+                  <div class="form-grid quote-fields">
+                    <div class="form-group"><label for="quoteDevice">Equipo o sistema</label><input class="form-control" id="quoteDevice" name="quoteDevice" required placeholder="Ej. Laptop Lenovo"></div>
+                    <div class="form-group"><label for="quoteLocation">Modalidad</label><select class="form-control" id="quoteLocation" name="quoteLocation"><option>Entrega en el taller</option><option>Solicitar visita técnica</option><option>Necesito orientación</option></select></div>
+                    <div class="form-group form-group-full"><label for="quoteNotes">Detalles adicionales</label><textarea class="form-control" id="quoteNotes" name="quoteNotes" rows="3" placeholder="Modelo, falla, cantidad de equipos o componentes requeridos."></textarea></div>
+                  </div>
+                </div>
+                <aside class="quote-summary" aria-live="polite">
+                  <span class="tool-kicker">Tu solicitud</span>
+                  <h4 id="quoteSummaryTitle">Aún no has seleccionado servicios</h4>
+                  <ul id="quoteSummaryList"><li>Elige una o varias opciones para preparar tu solicitud.</li></ul>
+                  <div class="quote-notice"><i class="fa-solid fa-circle-info"></i><span>El precio final se confirma después de conocer el modelo y evaluar la falla.</span></div>
+                  <button class="btn btn-whatsapp w-100" type="submit"><i class="fa-brands fa-whatsapp"></i> Solicitar cotización</button>
+                </aside>
+              </div>
+              <p class="form-feedback" id="quoteFeedback" role="alert" hidden></p>
+            </form>
+          </section>
+
+          <!-- Reserva -->
+          <section class="tool-panel" id="panel-cita" role="tabpanel" aria-labelledby="tab-cita" data-panel="cita" hidden>
+            <div class="tool-intro">
+              <div><span class="tool-kicker">Planifica tu visita</span><h3>Reserva de cita</h3><p>Elige una fecha y un horario disponible. La reserva se confirma personalmente por WhatsApp.</p></div>
+              <div class="privacy-chip"><i class="fa-regular fa-clock"></i> Lunes a sábado</div>
+            </div>
+            <form id="appointmentForm">
+              <div class="form-grid appointment-grid">
+                <div class="form-group"><label for="appointmentName">Nombre</label><input class="form-control" id="appointmentName" name="appointmentName" autocomplete="name" required></div>
+                <div class="form-group"><label for="appointmentService">Servicio</label><select class="form-control" id="appointmentService" name="appointmentService" required><option value="">Selecciona una opción</option><option>Computadora o laptop</option><option>Impresora</option><option>Redes e Internet</option><option>Cámaras de seguridad</option><option>Repuestos</option><option>Otro servicio</option></select></div>
+                <div class="form-group"><label for="appointmentDate">Fecha preferida</label><input class="form-control" type="date" id="appointmentDate" name="appointmentDate" required></div>
+                <div class="form-group"><label for="appointmentTime">Hora preferida</label><select class="form-control" id="appointmentTime" name="appointmentTime" required><option value="">Selecciona un horario</option><option>10:00 a. m.</option><option>11:00 a. m.</option><option>12:00 p. m.</option><option>1:00 p. m.</option><option>2:00 p. m.</option><option>3:00 p. m.</option><option>4:00 p. m.</option><option>5:00 p. m.</option><option>6:00 p. m.</option><option>7:00 p. m.</option></select></div>
+                <div class="form-group form-group-full"><label for="appointmentNotes">¿Qué debemos saber?</label><textarea class="form-control" id="appointmentNotes" name="appointmentNotes" rows="3" placeholder="Describe brevemente el equipo y el problema."></textarea></div>
+              </div>
+              <p class="form-feedback" id="appointmentFeedback" role="alert" hidden></p>
+              <div class="form-submit-row"><span><i class="fa-solid fa-circle-info"></i> La cita queda pendiente hasta recibir confirmación.</span><button class="btn btn-whatsapp" type="submit"><i class="fa-brands fa-whatsapp"></i> Solicitar cita</button></div>
+            </form>
+          </section>
+
+          <!-- Seguimiento -->
+          <section class="tool-panel" id="panel-seguimiento" role="tabpanel" aria-labelledby="tab-seguimiento" data-panel="seguimiento" hidden>
+            <div class="tracking-layout">
+              <div>
+                <span class="tool-kicker">Consulta privada</span>
+                <h3>Seguimiento de reparación</h3>
+                <p>Ingresa el código de orden recibido al entregar tu equipo. Por seguridad, el estado y los datos del cliente se confirman directamente por WhatsApp.</p>
+                <form id="trackingForm" class="tracking-form">
+                  <div class="form-group"><label for="trackingCode">Código de orden</label><input class="form-control code-input" id="trackingCode" name="trackingCode" required minlength="4" maxlength="24" autocomplete="off" placeholder="Ej. DPC-1042"></div>
+                  <button class="btn btn-whatsapp" type="submit"><i class="fa-brands fa-whatsapp"></i> Consultar estado</button>
+                </form>
+                <p class="form-feedback" id="trackingFeedback" role="alert" hidden></p>
+              </div>
+              <div class="tracking-visual" aria-hidden="true">
+                <span class="tracking-line"></span>
+                <div class="tracking-point is-complete"><i class="fa-solid fa-box-open"></i><span>Recibido</span></div>
+                <div class="tracking-point is-current"><i class="fa-solid fa-screwdriver-wrench"></i><span>En revisión</span></div>
+                <div class="tracking-point"><i class="fa-solid fa-circle-check"></i><span>Listo</span></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMOCIONES CONFIGURABLES -->
+    <section class="promo-strip" id="promotionBanner" aria-labelledby="promoTitle">
+      <div class="container promo-grid">
+        <div class="promo-icon"><i class="fa-solid fa-tags" aria-hidden="true"></i></div>
+        <div><span class="promo-eyebrow" id="promoEyebrow">Promoción destacada</span><h2 id="promoTitle">Pregunta por promociones de mantenimiento preventivo</h2><p id="promoDescription">Consulta disponibilidad y condiciones para computadoras, impresoras o varios equipos.</p></div>
+        <a class="btn btn-whatsapp js-service-whatsapp" id="promoAction" data-service="Promociones vigentes de mantenimiento preventivo" href="https://wa.me/50257544902" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Consultar promociones</a>
+      </div>
+    </section>
+
+    <!-- TRABAJOS, PROCESO Y RESEÑAS -->
+    <section class="section" id="trabajos">
+      <div class="container">
+        <header class="section-header">
+          <span class="badge badge-blue"><i class="fa-solid fa-images"></i> Servicios en acción</span>
+          <h2 class="section-title">Así trabajamos</h2>
+          <p class="section-desc">Muestras ilustrativas del proceso. Las fotografías de clientes solo se publican con autorización.</p>
+        </header>
+        <div class="work-gallery">
+          <article class="work-card"><div class="work-visual work-visual-laptop"><i class="fa-solid fa-laptop-medical"></i><span>01</span></div><div><span class="work-label">Computadoras</span><h3>Diagnóstico y mantenimiento</h3><p>Revisión, limpieza y comprobaciones antes de entregar.</p><a href="#herramientas" class="work-link" data-open-tool="diagnostico">Evaluar mi equipo <i class="fa-solid fa-arrow-right"></i></a></div></article>
+          <article class="work-card"><div class="work-visual work-visual-printer"><i class="fa-solid fa-print"></i><span>02</span></div><div><span class="work-label">Impresoras</span><h3>Revisión del sistema de impresión</h3><p>Evaluación de alimentación, tinta, sensores y funcionamiento.</p><a href="#herramientas" class="work-link" data-open-tool="cotizador">Solicitar cotización <i class="fa-solid fa-arrow-right"></i></a></div></article>
+          <article class="work-card"><div class="work-visual work-visual-network"><i class="fa-solid fa-network-wired"></i><span>03</span></div><div><span class="work-label">Redes y seguridad</span><h3>Instalación organizada</h3><p>Planificación, configuración y pruebas de conectividad o monitoreo.</p><a href="#herramientas" class="work-link" data-open-tool="cita">Reservar visita <i class="fa-solid fa-arrow-right"></i></a></div></article>
+        </div>
+
+        <div class="reviews-layout">
+          <div class="review-copy">
+            <span class="badge badge-green"><i class="fa-solid fa-star"></i> Opiniones auténticas</span>
+            <h2>Tu experiencia también cuenta</h2>
+            <p>No mostramos testimonios inventados. Puedes enviar tu opinión y autorizar su publicación; Doctor PC la revisará antes de incorporarla a la página.</p>
+            <div class="review-empty"><i class="fa-regular fa-comments"></i><span><strong>Reseñas verificadas</strong>Se publicarán aquí únicamente con autorización del cliente.</span></div>
+          </div>
+          <form class="card review-form" id="reviewForm">
+            <h3>Enviar una reseña</h3>
+            <div class="form-group"><label for="reviewName">Nombre</label><input class="form-control" id="reviewName" name="reviewName" autocomplete="name" required></div>
+            <fieldset class="rating-field"><legend>Calificación</legend><div class="star-rating" aria-label="Calificación de una a cinco estrellas"><input type="radio" id="star5" name="rating" value="5" required><label for="star5" aria-label="5 estrellas">★</label><input type="radio" id="star4" name="rating" value="4"><label for="star4" aria-label="4 estrellas">★</label><input type="radio" id="star3" name="rating" value="3"><label for="star3" aria-label="3 estrellas">★</label><input type="radio" id="star2" name="rating" value="2"><label for="star2" aria-label="2 estrellas">★</label><input type="radio" id="star1" name="rating" value="1"><label for="star1" aria-label="1 estrella">★</label></div></fieldset>
+            <div class="form-group"><label for="reviewText">Cuéntanos cómo fue tu experiencia</label><textarea class="form-control" id="reviewText" name="reviewText" rows="4" minlength="10" required></textarea></div>
+            <label class="consent-check"><input type="checkbox" id="reviewConsent" name="reviewConsent"><span>Autorizo que mi reseña pueda publicarse usando mi primer nombre.</span></label>
+            <button class="btn btn-whatsapp w-100" type="submit"><i class="fa-brands fa-whatsapp"></i> Enviar para revisión</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES -->
+    <section class="section section-alt" id="preguntas">
+      <div class="container faq-layout">
+        <div class="faq-intro">
+          <span class="badge badge-blue"><i class="fa-regular fa-circle-question"></i> Respuestas claras</span>
+          <h2 class="section-title">Preguntas frecuentes</h2>
+          <p class="section-desc">Información útil antes de llevar tu equipo o solicitar una visita.</p>
+          <a href="#contacto" class="btn btn-outline"><i class="fa-solid fa-headset"></i> Hacer otra pregunta</a>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item"><summary>¿Cuánto cuesta una reparación?<i class="fa-solid fa-plus"></i></summary><p>Depende del equipo, la falla y los repuestos necesarios. Primero se revisan los detalles y se confirma el presupuesto antes de proceder.</p></details>
+          <details class="faq-item"><summary>¿Cuánto tiempo tarda el servicio?<i class="fa-solid fa-plus"></i></summary><p>El tiempo varía según el diagnóstico, la disponibilidad de repuestos y la complejidad. Al recibir el equipo se proporciona una estimación más precisa.</p></details>
+          <details class="faq-item"><summary>¿Los trabajos tienen garantía?<i class="fa-solid fa-plus"></i></summary><p>Sí. La cobertura depende del servicio o componente instalado y se comunica claramente al entregar el trabajo.</p></details>
+          <details class="faq-item"><summary>¿Mis archivos estarán seguros?<i class="fa-solid fa-plus"></i></summary><p>La información se trata con confidencialidad. Cuando sea posible, se recomienda realizar una copia de seguridad antes de cualquier reparación.</p></details>
+          <details class="faq-item"><summary>¿Realizan visitas a domicilio o empresas?<i class="fa-solid fa-plus"></i></summary><p>Puedes solicitar una visita para redes, cámaras u otros casos. La disponibilidad y el costo de traslado se confirman por WhatsApp.</p></details>
+          <details class="faq-item"><summary>¿Debo reservar antes de visitar?<i class="fa-solid fa-plus"></i></summary><p>No es obligatorio, pero reservar ayuda a confirmar disponibilidad y reduce el tiempo de espera.</p></details>
         </div>
       </div>
     </section>
@@ -273,7 +609,7 @@
         
         <!-- Propuesta y Lista de Puntos Fuertes -->
         <div>
-          <span class="badge badge-green"><i class="fa-solid fa-shield-check"></i> Nuestra Promesa</span>
+          <span class="badge badge-green"><i class="fa-solid fa-shield-halved"></i> Nuestra Promesa</span>
           <h2 class="section-title">Calidad profesional a buen precio</h2>
           <p class="section-desc">En Doctor PC cuidamos tus herramientas de trabajo y estudio con honestidad, rapidez técnica y respaldo real.</p>
 
@@ -301,7 +637,7 @@
             </li>
           </ul>
 
-          <a href="https://wa.me/50231393354" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/50257544902" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-whatsapp"></i> ¡Comunícate con Doctor PC!
           </a>
         </div>
@@ -350,7 +686,7 @@
                 <h3>Ubicación</h3>
                 <p>A un costado de C.C. El Triángulo, Huehuetenango</p>
                 <a href="https://www.google.com/maps/search/C.C.+El+Triangulo+Huehuetenango" class="btn btn-outline btn-sm" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-solid fa-map-location-dot"></i> Ver en Google Maps
+                  <i class="fa-solid fa-map-location-dot"></i> Ver punto de referencia
                 </a>
               </div>
             </div>
@@ -374,20 +710,32 @@
                 <div class="contact-phones-display">
                   <div class="phone-item d-flex align-center">
                     <span class="phone-label d-flex align-center"><i class="fa-brands fa-whatsapp"></i> Principal</span>
-                    <span class="phone-number">5754 4902</span>
+                    <a class="phone-number" href="tel:+50257544902">5754 4902</a>
                   </div>
                   <div class="phone-item secondary d-flex align-center">
                     <span class="phone-label d-flex align-center"><i class="fa-solid fa-phone"></i> Alterno</span>
-                    <span class="phone-number">3099 0399</span>
+                    <a class="phone-number" href="tel:+50230990399">3099 0399</a>
                   </div>
                 </div>
+              </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="map-card">
+              <div class="map-reference-visual">
+                <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                <div><span>Punto de referencia</span><strong>C.C. El Triángulo</strong><p>Doctor PC está a un costado del centro comercial, no dentro de él.</p></div>
+              </div>
+              <div class="map-card-info flex-between">
+                <div><strong>Ubicación del local</strong><span>A un costado de C.C. El Triángulo, Huehuetenango</span></div>
+                <a href="https://www.google.com/maps/search/C.C.+El+Triangulo+Huehuetenango" target="_blank" rel="noopener noreferrer" aria-label="Abrir el centro comercial como punto de referencia en Google Maps"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
               </div>
             </div>
 
           </address>
 
           <!-- Asistente Interactivo de WhatsApp -->
-          <form class="card" id="whatsappQuickForm" onsubmit="return false;">
+          <form class="card" id="whatsappQuickForm">
             <div style="margin-bottom: var(--space-lg);">
               <h3 class="d-flex align-center gap-sm"><i class="fa-brands fa-whatsapp" style="color: var(--accent-green);"></i> Consulta Rápida</h3>
               <p style="color: var(--text-sub); font-size: 0.94rem;">Envía tu consulta técnica de inmediato a nuestro WhatsApp:</p>
@@ -415,7 +763,7 @@
               <textarea id="clientProblem" class="form-control" rows="3" placeholder="Ej. Mi laptop enciende pero se apaga a los pocos minutos..."></textarea>
             </div>
 
-            <button type="button" class="btn btn-whatsapp w-100" id="btnSendCustomWhatsapp">
+            <button type="submit" class="btn btn-whatsapp w-100" id="btnSendCustomWhatsapp">
               <i class="fa-brands fa-whatsapp"></i> Enviar Consulta por WhatsApp
             </button>
           </form>
@@ -441,7 +789,7 @@
             <i class="fa-regular fa-clock"></i> <span>10:00 am a 8:00 pm</span>
           </div>
           <div class="d-flex align-center gap-sm" style="color: #94a3b8; font-size: 0.88rem;">
-            <i class="fa-solid fa-location-dot"></i> <span>C.C. El Triángulo, Huehuetenango</span>
+            <i class="fa-solid fa-location-dot"></i> <span>A un costado de C.C. El Triángulo, Huehuetenango</span>
           </div>
         </div>
 
@@ -451,21 +799,23 @@
           <ul class="footer-links">
             <li><a href="#inicio"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Inicio</a></li>
             <li><a href="#servicios"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Nuestros Servicios</a></li>
+            <li><a href="#herramientas"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Diagnóstico y citas</a></li>
+            <li><a href="#preguntas"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Preguntas frecuentes</a></li>
             <li><a href="#por-que-elegirnos"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Por qué elegirnos</a></li>
             <li><a href="#contacto"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Horario y Ubicación</a></li>
           </ul>
         </div>
 
-        <!-- Redes Sociales -->
+        <!-- Canales verificados -->
         <div class="footer-col">
-          <h4>Síguenos en Redes</h4>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-pill instagram d-flex align-center">
-            <div class="icon-box"><i class="fa-brands fa-instagram"></i></div>
-            <div class="d-flex flex-column"><span>Instagram</span><strong>@DoctorPC_</strong></div>
+          <h4>Canales de atención</h4>
+          <a href="https://wa.me/50257544902" target="_blank" rel="noopener noreferrer" class="social-pill whatsapp d-flex align-center">
+            <div class="icon-box"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="d-flex flex-column"><span>WhatsApp</span><strong>5754 4902</strong></div>
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-pill facebook d-flex align-center">
-            <div class="icon-box"><i class="fa-brands fa-facebook-f"></i></div>
-            <div class="d-flex flex-column"><span>Facebook</span><strong>@DoctorPC_</strong></div>
+          <a href="https://www.google.com/maps/search/C.C.+El+Triangulo+Huehuetenango" target="_blank" rel="noopener noreferrer" class="social-pill maps d-flex align-center">
+            <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="d-flex flex-column"><span>Punto de referencia</span><strong>A un costado de C.C. El Triángulo</strong></div>
           </a>
         </div>
       </div>
@@ -482,7 +832,7 @@
        ========================================================================= -->
   <aside class="whatsapp-floating d-flex align-center" aria-label="Contacto flotante">
     <span class="whatsapp-tooltip">¡Estamos en línea! Escríbenos</span>
-    <a href="https://wa.me/50231393354" class="whatsapp-btn-circle flex-center" id="floatingWhatsappBtn" target="_blank" rel="noopener noreferrer" aria-label="Chat de WhatsApp">
+    <a href="https://wa.me/50257544902" class="whatsapp-btn-circle flex-center" id="floatingWhatsappBtn" target="_blank" rel="noopener noreferrer" aria-label="Chat de WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
     </a>
   </aside>
@@ -490,6 +840,30 @@
   <button class="scroll-top-btn flex-center" id="scrollTopBtn" aria-label="Volver arriba">
     <i class="fa-solid fa-arrow-up"></i>
   </button>
+
+  <!-- Ayuda de instalación para navegadores sin aviso automático -->
+  <dialog class="install-dialog" id="installHelpDialog" aria-labelledby="installDialogTitle">
+    <div class="install-dialog-header flex-between">
+      <div class="d-flex align-center gap-md">
+        <img src="img/icons/icon-192.png" width="52" height="52" alt="">
+        <div><span>Aplicación web</span><h2 id="installDialogTitle">Instalar Doctor PC</h2></div>
+      </div>
+      <button class="dialog-close flex-center" type="button" data-close-install-dialog aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="install-instructions" id="installInstructions">
+      <p>Usa el menú de tu navegador y selecciona <strong>Instalar aplicación</strong> o <strong>Agregar a la pantalla de inicio</strong>.</p>
+    </div>
+    <div class="install-benefits">
+      <span><i class="fa-solid fa-bolt"></i> Acceso rápido</span>
+      <span><i class="fa-solid fa-wifi"></i> Contenido básico sin conexión</span>
+      <span><i class="fa-solid fa-rotate"></i> Actualizaciones automáticas</span>
+    </div>
+  </dialog>
+
+  <aside class="pwa-update-toast" id="pwaUpdateToast" role="status" hidden>
+    <div><strong>Nueva versión disponible</strong><span>Actualiza para obtener las últimas mejoras.</span></div>
+    <button class="btn btn-primary btn-sm" id="pwaUpdateButton" type="button">Actualizar</button>
+  </aside>
 
   <!-- Lógica JavaScript Optimizada -->
   <script src="js/script.js"></script>

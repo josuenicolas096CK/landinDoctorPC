@@ -1,0 +1,60 @@
+{
+  "id": "./",
+  "name": "Doctor PC Huehuetenango",
+  "short_name": "Doctor PC",
+  "description": "Diagnóstico, soporte técnico, citas y seguimiento de reparaciones en Huehuetenango.",
+  "lang": "es-GT",
+  "dir": "ltr",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f8fafc",
+  "theme_color": "#0d2238",
+  "categories": ["business", "utilities", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "img/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Diagnóstico guiado",
+      "short_name": "Diagnóstico",
+      "description": "Iniciar una evaluación rápida del equipo",
+      "url": "./#herramientas",
+      "icons": [{ "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Reservar cita",
+      "short_name": "Cita",
+      "description": "Solicitar una cita de servicio técnico",
+      "url": "./?tool=cita#herramientas",
+      "icons": [{ "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Seguimiento",
+      "short_name": "Seguimiento",
+      "description": "Consultar una reparación por código",
+      "url": "./?tool=seguimiento#herramientas",
+      "icons": [{ "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

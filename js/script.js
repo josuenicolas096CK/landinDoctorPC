@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggle: document.getElementById('menuToggle'),
     navMenu: document.getElementById('navMenu'),
     navOverlay: document.getElementById('navOverlay'),
+    quickAccess: document.getElementById('quickAccess'),
+    quickAccessButton: document.getElementById('quickAccessButton'),
+    quickAccessMenu: document.getElementById('quickAccessMenu'),
     scrollTopBtn: document.getElementById('scrollTopBtn'),
     currentYear: document.getElementById('currentYear'),
     sections: document.querySelectorAll('section[id]'),
@@ -39,13 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     diagnosticForm: document.getElementById('diagnosticWizard'),
     quoteForm: document.getElementById('quoteForm'),
     appointmentForm: document.getElementById('appointmentForm'),
-    trackingForm: document.getElementById('trackingForm'),
     pwaInstallSection: document.getElementById('pwaInstallSection'),
     pwaInstallStatus: document.getElementById('pwaInstallStatus'),
     installDialog: document.getElementById('installHelpDialog'),
-    installInstructions: document.getElementById('installInstructions'),
-    pwaUpdateToast: document.getElementById('pwaUpdateToast'),
-    pwaUpdateButton: document.getElementById('pwaUpdateButton')
+    installInstructions: document.getElementById('installInstructions')
   };
 
   // 1.1 Actualizar año dinámico de copyright
@@ -70,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // =========================================================================
   // 2. CONTROL DEL MENÚ MÓVIL (ACCESIBILIDAD Y ESTADO)
   // =========================================================================
+  const setQuickAccessMenuState = (isOpen) => {
+    if (!DOM.quickAccess || !DOM.quickAccessButton || !DOM.quickAccessMenu) return;
+    DOM.quickAccessMenu.hidden = !isOpen;
+    DOM.quickAccessButton.setAttribute('aria-expanded', String(isOpen));
+    DOM.quickAccess.classList.toggle('is-open', isOpen);
+  };
+
   const setMobileMenuState = (isOpen) => {
     if (!DOM.menuToggle || !DOM.navMenu || !DOM.navOverlay) return;
     DOM.menuToggle.classList.toggle('is-active', isOpen);
@@ -79,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     DOM.menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     DOM.navOverlay.setAttribute('aria-hidden', String(!isOpen));
     document.body.style.overflow = isOpen && window.innerWidth <= CONFIG.mobileBreakpoint ? 'hidden' : '';
+    if (!isOpen) setQuickAccessMenuState(false);
   };
 
   const closeMobileMenu = () => setMobileMenuState(false);
@@ -108,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (DOM.themeSwitcher && !DOM.themeSwitcher.contains(e.target)) {
       setThemeMenuState(false);
     }
+    if (DOM.quickAccess && !DOM.quickAccess.contains(e.target)) {
+      setQuickAccessMenuState(false);
+    }
 
     // 4.1 Toggle del menú hamburguesa
     if (e.target.closest('#menuToggle')) {
@@ -121,7 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 4.3 Botón volver arriba
+    // 4.3 Accesos rápidos de la barra superior
+    if (e.target.closest('#quickAccessButton')) {
+      setQuickAccessMenuState(DOM.quickAccessMenu?.hidden ?? true);
+      return;
+    }
+
+    // 4.4 Botón volver arriba
     if (e.target.closest('#scrollTopBtn')) {
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -135,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 4.4 Navegación suave por anclas internas (#)
+    // 4.5 Navegación suave por anclas internas (#)
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor) {
       if (anchor.dataset.openTool) activateTool(anchor.dataset.openTool);
@@ -147,13 +164,13 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // 4.5 Abrir/cerrar el selector de tema
+    // 4.6 Abrir/cerrar el selector de tema
     if (e.target.closest('#themeMenuButton')) {
       setThemeMenuState(DOM.themeMenu?.hidden ?? true);
       return;
     }
 
-    // 4.6 Aplicar una opción de tema
+    // 4.7 Aplicar una opción de tema
     const themeOption = e.target.closest('.theme-option[data-theme]');
     if (themeOption) {
       applyTheme(themeOption.dataset.theme);
@@ -402,18 +419,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ].filter(Boolean).join('\n'));
   });
 
-  // Seguimiento privado por código
-  const trackingCode = document.getElementById('trackingCode');
-  trackingCode?.addEventListener('input', () => {
-    trackingCode.value = trackingCode.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
-  });
-  DOM.trackingForm?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!DOM.trackingForm.reportValidity()) return;
-    const code = trackingCode.value.trim();
-    openWhatsApp(`¡Hola Doctor PC! Deseo consultar el estado de mi reparación.\n\n*Código de orden:* ${code}`);
-  });
-
   // Mantiene una sola pregunta frecuente abierta para facilitar la lectura.
   document.querySelectorAll('.faq-item').forEach((item) => {
     item.addEventListener('toggle', () => {
@@ -428,7 +433,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. INSTALACIÓN Y ACTUALIZACIÓN DE LA PWA
   // =========================================================================
   let deferredInstallPrompt = null;
-  let waitingServiceWorker = null;
   let reloadingForUpdate = false;
   const installTriggers = [...document.querySelectorAll('.install-app-trigger')];
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -473,6 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const requestAppInstallation = async () => {
+    closeMobileMenu();
     if (isStandalone()) {
       markAppAsInstalled();
       return;
@@ -513,35 +518,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (isStandalone()) markAppAsInstalled();
   else if (isIOS && DOM.pwaInstallStatus) DOM.pwaInstallStatus.textContent = 'En iPhone se instala desde Safari en pocos pasos.';
 
-  const showUpdateAvailable = (worker) => {
-    waitingServiceWorker = worker;
-    if (DOM.pwaUpdateToast) DOM.pwaUpdateToast.hidden = false;
-  };
-
-  DOM.pwaUpdateButton?.addEventListener('click', () => {
-    waitingServiceWorker?.postMessage({ type: 'SKIP_WAITING' });
-  });
-
   if ('serviceWorker' in navigator && /^https?:$/.test(window.location.protocol)) {
-    navigator.serviceWorker.register('./sw.js', { scope: './' })
+    const hadServiceWorkerController = Boolean(navigator.serviceWorker.controller);
+    navigator.serviceWorker.register('./sw.js', { scope: './', updateViaCache: 'none' })
       .then((registration) => {
-        if (registration.waiting && navigator.serviceWorker.controller) showUpdateAvailable(registration.waiting);
-
-        registration.addEventListener('updatefound', () => {
-          const installingWorker = registration.installing;
-          installingWorker?.addEventListener('statechange', () => {
-            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-              showUpdateAvailable(installingWorker);
-            }
-          });
-        });
+        // Comprueba cambios al abrir la aplicación; el service worker nuevo se
+        // activa solo y reemplaza inmediatamente los archivos desactualizados.
+        registration.update().catch(() => {});
       })
       .catch(() => {
         if (DOM.pwaInstallStatus) DOM.pwaInstallStatus.textContent = 'La instalación estará disponible cuando el sitio se publique con HTTPS.';
       });
 
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (reloadingForUpdate) return;
+      if (!hadServiceWorkerController || reloadingForUpdate) return;
       reloadingForUpdate = true;
       window.location.reload();
     });
@@ -570,8 +560,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const navLink = document.querySelector(`.nav-menu a[href="#${id}"]`);
 
       if (navLink && scrollY >= top && scrollY < top + height) {
-        document.querySelectorAll('.nav-link').forEach((link) => link.classList.remove('active'));
+        document.querySelectorAll('.nav-link, .nav-quick-menu a').forEach((link) => link.classList.remove('active'));
         navLink.classList.add('active');
+        if (navLink.closest('.nav-quick-menu')) DOM.quickAccessButton?.classList.add('active');
       }
     });
   };
@@ -710,11 +701,37 @@ document.addEventListener('DOMContentLoaded', () => {
       closeMobileMenu();
       DOM.menuToggle?.focus();
     }
+    if (DOM.quickAccess?.classList.contains('is-open')) {
+      setQuickAccessMenuState(false);
+      DOM.quickAccessButton?.focus();
+    }
     setThemeMenuState(false);
+  });
+
+  DOM.quickAccess?.addEventListener('keydown', (event) => {
+    const options = [...(DOM.quickAccessMenu?.querySelectorAll('[role="menuitem"]') || [])];
+
+    if (event.key === 'Escape') {
+      event.stopPropagation();
+      setQuickAccessMenuState(false);
+      DOM.quickAccessButton?.focus();
+      return;
+    }
+    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
+    if (DOM.quickAccessMenu?.hidden) setQuickAccessMenuState(true);
+
+    const currentIndex = options.indexOf(document.activeElement);
+    let nextIndex = 0;
+    if (event.key === 'End') nextIndex = options.length - 1;
+    if (event.key === 'ArrowDown' && currentIndex >= 0) nextIndex = (currentIndex + 1) % options.length;
+    if (event.key === 'ArrowUp') nextIndex = currentIndex <= 0 ? options.length - 1 : currentIndex - 1;
+    options[nextIndex]?.focus();
   });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > CONFIG.mobileBreakpoint) closeMobileMenu();
+    setQuickAccessMenuState(false);
     setThemeMenuState(false);
   }, { passive: true });
 });

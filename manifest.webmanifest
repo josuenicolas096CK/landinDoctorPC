@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Doctor PC Huehuetenango",
   "short_name": "Doctor PC",
-  "description": "Diagnóstico, soporte técnico, citas y seguimiento de reparaciones en Huehuetenango.",
+  "description": "Diagnóstico, soporte técnico, cotizaciones y citas en Huehuetenango.",
   "lang": "es-GT",
   "dir": "ltr",
   "start_url": "./?source=pwa",
@@ -47,13 +47,6 @@
       "short_name": "Cita",
       "description": "Solicitar una cita de servicio técnico",
       "url": "./?tool=cita#herramientas",
-      "icons": [{ "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
-    },
-    {
-      "name": "Seguimiento",
-      "short_name": "Seguimiento",
-      "description": "Consultar una reparación por código",
-      "url": "./?tool=seguimiento#herramientas",
       "icons": [{ "src": "img/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Doctor PC | Soluciones técnicas rápidas y con garantía en Huehuetenango</title>
   
   <!-- Metadatos SEO y Redes Sociales -->
@@ -67,12 +67,32 @@
           <li><a href="#inicio" class="nav-link active">Inicio</a></li>
           <li><a href="#servicios" class="nav-link">Servicios</a></li>
           <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
-          <li><a href="#por-que-elegirnos" class="nav-link">Por qué elegirnos</a></li>
+          <li class="nav-quick-access" id="quickAccess">
+            <button class="nav-link nav-quick-trigger" id="quickAccessButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="quickAccessMenu">
+              Accesos <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+            </button>
+            <div class="nav-quick-menu" id="quickAccessMenu" role="menu" aria-labelledby="quickAccessButton" hidden>
+              <a href="#herramientas" role="menuitem" data-open-tool="diagnostico"><i class="fa-solid fa-stethoscope" aria-hidden="true"></i><span><strong>Diagnóstico</strong><small>Describe la falla paso a paso</small></span></a>
+              <a href="#herramientas" role="menuitem" data-open-tool="cotizador"><i class="fa-solid fa-file-invoice-dollar" aria-hidden="true"></i><span><strong>Cotizador</strong><small>Prepara una solicitud completa</small></span></a>
+              <a href="#herramientas" role="menuitem" data-open-tool="cita"><i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span><strong>Reservar cita</strong><small>Elige fecha y horario</small></span></a>
+              <a href="#promotionBanner" role="menuitem"><i class="fa-solid fa-tags" aria-hidden="true"></i><span><strong>Promociones</strong><small>Consulta ofertas disponibles</small></span></a>
+              <a href="#trabajos" role="menuitem"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i><span><strong>Cómo trabajamos</strong><small>Conoce nuestro proceso</small></span></a>
+              <a href="#preguntas" role="menuitem"><i class="fa-regular fa-circle-question" aria-hidden="true"></i><span><strong>Preguntas frecuentes</strong><small>Resuelve dudas comunes</small></span></a>
+              <a href="#por-que-elegirnos" role="menuitem"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i><span><strong>Por qué elegirnos</strong><small>Garantía y atención profesional</small></span></a>
+              <button class="nav-quick-install install-app-trigger" type="button" role="menuitem"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><span><strong>Instalar aplicación</strong><small>Acceso rápido desde tu teléfono</small></span></button>
+            </div>
+          </li>
           <li><a href="#contacto" class="nav-link">Contacto</a></li>
-          <li class="mobile-cta w-100">
-            <a href="https://wa.me/50231393354" class="btn btn-whatsapp w-100" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
-            </a>
+          <li class="mobile-cta w-100" aria-label="Acciones rápidas">
+            <span class="mobile-cta-label">Atención directa</span>
+            <div class="mobile-cta-grid">
+              <a href="https://wa.me/50231393354" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+              <a href="tel:+50231393354" class="btn btn-outline">
+                <i class="fa-solid fa-phone"></i> Llamar
+              </a>
+            </div>
           </li>
         </ul>
       </nav>
@@ -235,7 +255,7 @@
         <div class="pwa-install-copy">
           <span class="pwa-install-eyebrow"><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i> Disponible como aplicación</span>
           <h2 id="pwaInstallTitle">Instala Doctor PC en tu teléfono</h2>
-          <p>Accede rápidamente al diagnóstico, las citas y el seguimiento, incluso cuando la conexión sea inestable.</p>
+          <p>Accede rápidamente al diagnóstico, las cotizaciones y las citas, incluso cuando la conexión sea inestable.</p>
           <span class="pwa-install-status" id="pwaInstallStatus" role="status">Instalación disponible en teléfonos y computadoras compatibles.</span>
         </div>
         <button class="btn btn-primary install-app-trigger" type="button">
@@ -342,7 +362,7 @@
         <header class="section-header">
           <span class="badge badge-blue"><i class="fa-solid fa-wand-magic-sparkles"></i> Te ayudamos a empezar</span>
           <h2 class="section-title">Resuelve tu consulta en pocos pasos</h2>
-          <p class="section-desc">Describe la falla, prepara una cotización, reserva tu visita o consulta una reparación sin llamadas innecesarias.</p>
+          <p class="section-desc">Describe la falla, prepara una cotización o reserva tu visita sin llamadas innecesarias.</p>
         </header>
 
         <div class="tool-tabs" role="tablist" aria-label="Herramientas de atención">
@@ -354,9 +374,6 @@
           </button>
           <button class="tool-tab" id="tab-cita" type="button" role="tab" aria-selected="false" aria-controls="panel-cita" data-tool="cita" tabindex="-1">
             <i class="fa-regular fa-calendar-check" aria-hidden="true"></i><span>Reservar cita</span>
-          </button>
-          <button class="tool-tab" id="tab-seguimiento" type="button" role="tab" aria-selected="false" aria-controls="panel-seguimiento" data-tool="seguimiento" tabindex="-1">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Seguimiento</span>
           </button>
         </div>
 
@@ -514,27 +531,6 @@
             </form>
           </section>
 
-          <!-- Seguimiento -->
-          <section class="tool-panel" id="panel-seguimiento" role="tabpanel" aria-labelledby="tab-seguimiento" data-panel="seguimiento" hidden>
-            <div class="tracking-layout">
-              <div>
-                <span class="tool-kicker">Consulta privada</span>
-                <h3>Seguimiento de reparación</h3>
-                <p>Ingresa el código de orden recibido al entregar tu equipo. Por seguridad, el estado y los datos del cliente se confirman directamente por WhatsApp.</p>
-                <form id="trackingForm" class="tracking-form">
-                  <div class="form-group"><label for="trackingCode">Código de orden</label><input class="form-control code-input" id="trackingCode" name="trackingCode" required minlength="4" maxlength="24" autocomplete="off" placeholder="Ej. DPC-1042"></div>
-                  <button class="btn btn-whatsapp" type="submit"><i class="fa-brands fa-whatsapp"></i> Consultar estado</button>
-                </form>
-                <p class="form-feedback" id="trackingFeedback" role="alert" hidden></p>
-              </div>
-              <div class="tracking-visual" aria-hidden="true">
-                <span class="tracking-line"></span>
-                <div class="tracking-point is-complete"><i class="fa-solid fa-box-open"></i><span>Recibido</span></div>
-                <div class="tracking-point is-current"><i class="fa-solid fa-screwdriver-wrench"></i><span>En revisión</span></div>
-                <div class="tracking-point"><i class="fa-solid fa-circle-check"></i><span>Listo</span></div>
-              </div>
-            </div>
-          </section>
         </div>
       </div>
     </section>
@@ -689,20 +685,20 @@
             <div class="card contact-card d-flex align-center">
               <div class="icon-box icon-box-green"><i class="fa-solid fa-phone-volume"></i></div>
               <div>
-                <h3>Teléfonos de Atención Directa</h3>
-                <p>Líneas de atención telefónica directa:</p>
+                <h3>WhatsApp y teléfonos de atención</h3>
+                <p>Las consultas por WhatsApp se atienden únicamente en el número principal:</p>
                 <div class="contact-phones-display">
                   <div class="phone-item d-flex align-center">
                     <span class="phone-label d-flex align-center"><i class="fa-brands fa-whatsapp"></i> Principal</span>
-                    <a class="phone-number" href="tel:+50231393354">3139 3354</a>
+                    <a class="phone-number" href="https://wa.me/50231393354" target="_blank" rel="noopener noreferrer" aria-label="Escribir al WhatsApp principal 3139 3354">3139 3354</a>
                   </div>
                   <div class="phone-item secondary d-flex align-center">
                     <span class="phone-label d-flex align-center"><i class="fa-solid fa-phone"></i> Secundario</span>
-                    <a class="phone-number" href="tel:+50257544902">5754 4902</a>
+                    <span class="phone-number">5754 4902</span>
                   </div>
                   <div class="phone-item secondary d-flex align-center">
                     <span class="phone-label d-flex align-center"><i class="fa-solid fa-phone"></i> Secundario</span>
-                    <a class="phone-number" href="tel:+50230990399">3099 0399</a>
+                    <span class="phone-number">3099 0399</span>
                   </div>
                 </div>
               </div>
@@ -847,11 +843,6 @@
       <span><i class="fa-solid fa-rotate"></i> Actualizaciones automáticas</span>
     </div>
   </dialog>
-
-  <aside class="pwa-update-toast" id="pwaUpdateToast" role="status" hidden>
-    <div><strong>Nueva versión disponible</strong><span>Actualiza para obtener las últimas mejoras.</span></div>
-    <button class="btn btn-primary btn-sm" id="pwaUpdateButton" type="button">Actualizar</button>
-  </aside>
 
   <!-- Lógica JavaScript Optimizada -->
   <script src="js/script.js"></script>

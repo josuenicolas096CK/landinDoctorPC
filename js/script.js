@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 1. CONFIGURACIÓN Y REFERENCIAS PRINCIPALES
   // =========================================================================
   const CONFIG = {
-    whatsappNumber: '50257544902',
+    whatsappNumber: '50231393354',
     scrollOffset: 70,
     mobileBreakpoint: 980,
     maxPhotoBytes: 8 * 1024 * 1024,
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
     quoteForm: document.getElementById('quoteForm'),
     appointmentForm: document.getElementById('appointmentForm'),
     trackingForm: document.getElementById('trackingForm'),
-    reviewForm: document.getElementById('reviewForm'),
     pwaInstallSection: document.getElementById('pwaInstallSection'),
     pwaInstallStatus: document.getElementById('pwaInstallStatus'),
     installDialog: document.getElementById('installHelpDialog'),
@@ -413,20 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!DOM.trackingForm.reportValidity()) return;
     const code = trackingCode.value.trim();
     openWhatsApp(`¡Hola Doctor PC! Deseo consultar el estado de mi reparación.\n\n*Código de orden:* ${code}`);
-  });
-
-  // Reseñas auténticas enviadas para autorización
-  DOM.reviewForm?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!DOM.reviewForm.reportValidity()) return;
-    const data = new FormData(DOM.reviewForm);
-    openWhatsApp([
-      '¡Hola Doctor PC! Deseo compartir una reseña:',
-      `*Nombre:* ${data.get('reviewName')}`,
-      `*Calificación:* ${data.get('rating')} de 5 estrellas`,
-      `*Reseña:* ${data.get('reviewText')}`,
-      `*Autorización para publicar:* ${data.get('reviewConsent') ? 'Sí, usando mi primer nombre' : 'No, es un comentario privado'}`
-    ].join('\n'));
   });
 
   // Mantiene una sola pregunta frecuente abierta para facilitar la lectura.
